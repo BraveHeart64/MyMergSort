@@ -1,3 +1,7 @@
+// I am going to rewrite this code. this is not a very good merge sort. The sort needs two arrays right and left. the sort needs to place data in those arrays from the original from 
+// low value to high and then it needs to compare the left sub array to the right sub array and place the date from left into the right else into the left.
+// last what is remaining from the left must go into the oringal array and same for the right. I will rewrite this Algorithm in Java soon. expect it by 13 of October or at least this friday.
+
 public class MyMergSort {
     public void PrintArray(int[] arr) {
         for (int i = 0; i < arr.length; ++i) {

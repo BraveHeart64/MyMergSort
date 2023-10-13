@@ -1,59 +1,88 @@
-// I am going to rewrite this code. this is not a very good merge sort. The sort needs two arrays right and left. the sort needs to place data in those arrays from the original from 
-// low value to high and then it needs to compare the left sub array to the right sub array and place the date from left into the right else into the left.
-// last what is remaining from the left must go into the oringal array and same for the right. I will rewrite this Algorithm in Java soon. expect it by 13 of October or at least this friday.
+// I corrected this from four years ago. This is a MergeSort. Education really does help with my understanding but I also went back and study these Algorithm along with Selection Sort, Insertion Sort.
 
-public class MyMergSort {
-    public void PrintArray(int[] arr) {
-        for (int i = 0; i < arr.length; ++i) {
-            System.out.print("\t" + arr[i]);
-        }
-    }
-
-    public void Proccess(int[] arr, int low, int median) {
-        low = 0;
-        median = arr.length / 2;
-        Sort(arr, low, median, median);
-        low = median;
-        median = arr.length - 1;
-        Sort(arr, low, median, median);
-        low = 0;
-        Sort(arr, low, arr.length - 1, arr.length);
-        // median = arr.length-1;
-        // Sort(arr,low,median);
-    }
-
-    public void Sort(int[] arr, int low, int end, int counter) {
-        if (arr.length == 1) {
-            System.out.println("Only one item is in the list, it is sorted!");
-            return;
-        }
-        for (int i = low; i < end; ++i) {
-            if (arr[i] > arr[i + 1]) {
-                int temp = arr[i];
-                arr[i] = arr[i + 1];
-                arr[i + 1] = temp;
+    class MergeSort{  
+    
+           public void Merging(int a[], int low,int mid,int high){
+                 int left_counter = mid - low+1;
+                int right_counter = high - mid;
+                
+                int l_arr[] = new int[left_counter];
+                int r_arr[] = new int[right_counter];
+                
+                for(int i = 0; i < left_counter; ++i){
+                    l_arr[i]= a[low + i]; 
+                
+                }
+                
+                for( int i = 0; i< right_counter; ++i){
+                    r_arr[i] = a[mid+1+ i];
+                
+                }
+                
+                int left, right, org;
+                left= 0;
+                right = 0;
+                org = low;
+                
+                while(left < left_counter && right < right_counter){
+                    if(l_arr[left] < r_arr[right]){
+                        a[org] = l_arr[left];
+                        ++left;
+                    }
+                    else{
+                        a[org] = r_arr[right];
+                        ++right;
+                    }
+                    ++org;
+                }
+                
+                
+                while(left< left_counter){
+                    a[org] = l_arr[left];
+                    ++left;
+                    ++org;
+                }
+            
+                while(right < right_counter){
+                    a[org] = r_arr[right];
+                    ++right;
+                    ++org;
+                
+                
+                }
+            
             }
+    
+      public  void Merge(int arr[], int low, int high){
+           
+           
+            if(low<high){
+               int mid = (low+high)/2;
+               Merge(arr,low, mid);
+               Merge(arr, mid+1, high);
+               Merging(arr,low,mid,high);
+            
+            }
+        
+        
         }
-        if (counter >= 0) {--counter;
-            Sort(arr, low, end, counter);
-        }
-    }
-
-    public static void main(String[] args) {
-        // TODO code application logic here
-        int[] array = {
-            14,
-            33,
-            27,
-            10,
-            35,
-            19,
-            42,
-            44
-        };
-        MyMergSort sort = new MyMergSort();
-        System.out.println("My Custom MergSort");
-        sort.Proccess(array, 0, 0);
-        sort.PrintArray(array);
-    }
-}
+    
+    
+    
+    
+        public static void main(String args[]){
+            MergeSort merg = new MergeSort();
+            int a[] = {50,45,40,35,30,25,20,15,10,5,1}; 
+            
+            
+            merg.Merge(a,0,a.length-1);
+            
+            for(int i =0; i<a.length; ++i){
+                System.out.println(a[i]);
+            }
+            System.out.println("Hello Java"); 
+            
+         
+          
+        }  
+    }  

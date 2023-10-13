@@ -3,7 +3,7 @@
     class MergeSort{  
     
            public void Merging(int a[], int low,int mid,int high){
-                 int left_counter = mid - low+1;
+                int left_counter = mid - low+1;
                 int right_counter = high - mid;
                 
                 int l_arr[] = new int[left_counter];
